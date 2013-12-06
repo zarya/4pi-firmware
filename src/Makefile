@@ -140,10 +140,12 @@ VPATH += $(BOARDS)/$(BOARD)/$(CHIP)
 VPATH += $(EXT_LIBS)/cmsis
 VPATH += $(PERIPH)/systick
 VPATH += $(PERIPH)/eefc
+VPATH += $(PERIPH)/twi
 VPATH += $(MEMORY)
 VPATH += $(MEMORY)/flash
 VPATH += $(MEMORY)/sdmmc/
 VPATH += $(DRV)/dmad
+VPATH += $(DRV)/twi
 VPATH += $(FATFS)/src
 VPATH += $(FATFS)/src/option
 
@@ -205,6 +207,9 @@ C_SOURCES += flashd_eefc.c
 C_SOURCES += sdcard.c
 C_SOURCES += gcode_parser.c
 C_SOURCES += globals.c
+C_SOURCES += hdlcd.c
+C_SOURCES += pcf8574.c
+C_SOURCES += lcdpcf8574.c
 
 #media
 C_SOURCES += Media.c
@@ -215,6 +220,10 @@ C_SOURCES += sdmmc_mci.c
 C_SOURCES += diskio.c
 C_SOURCES += ff.c
 C_SOURCES += unicode.c
+
+#TWI
+C_SOURCES += twid.c
+C_SOURCES += twi.c
 
 # C sources for different chips
 ifeq ($(CHIP_CORE), cortexm3)

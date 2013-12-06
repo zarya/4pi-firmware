@@ -1,0 +1,2 @@
+
+void hdlcd_setup(); 

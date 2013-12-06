@@ -17,6 +17,8 @@
 #include "planner.h"
 #include "gcode_parser.h"
 #include "sdcard.h"
+#include "hdlcd.h"
+
 //#include "heaters.h"
 
 
@@ -153,6 +155,10 @@ int main()
 	//-------- Init Planner Values --------------
 	printf("Plan Init\n\r");
 	plan_init();
+
+    //-------- setup LCD driver ----------
+    printf("LCD Init\n\r");
+    hdlcd_setup();
 	
 	printf("G-Code parser init\n\r");
 	gcode_init(usb_printf);
