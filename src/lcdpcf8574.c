@@ -17,7 +17,7 @@ Please refer to LICENSE file for licensing information.
 
 #include "lcdpcf8574.h"
 
-#define lcd_e_delay()   _delayFourCycles( 3200 ) 
+#define lcd_e_delay()   _delayFourCycles( 500 ) 
 #define lcd_e_toggle()  toggle_e()
 #define _BV(bit) (1 << (bit)) 
 

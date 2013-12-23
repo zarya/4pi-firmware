@@ -10,9 +10,10 @@
 void hdlcd_setup(void)
 {
     //init lcd
-    lcd_init(LCD_DISP_ON_CURSOR_BLINK);
+    lcd_init(LCD_DISP_ON);
     lcd_clrscr();
     lcd_led(0);
+    lcd_puts("4Pi Starting up");
 }
 
 void hdlcd_main() {
@@ -23,15 +24,21 @@ void hdlcd_main() {
     heater_struct* heater = get_heater(0);
 
     char str[20];
-    sprintf(str, "T1: %d C", heater->akt_temp);
+    sprintf(str, "T1: %d\xdf", heater->akt_temp);
     lcd_puts(str);
 
     lcd_puts(" ");
 
     heater = get_heater(2);
-    sprintf(str, "B: %d C", bed_heater.akt_temp);
+    sprintf(str, "B: %d\xdf", bed_heater.akt_temp);
     lcd_puts(str);
 
+    return;
+
+    lcd_puts("    ");
+    
+    sprintf(str, "X%f/Y%f/Z%f", current_position[0],current_position[1],current_position[2]);
+    lcd_puts(str);
 
     //lcd go home
     //lcd_home();
