@@ -19,32 +19,53 @@ References:
 
 #define LCD_PCF8574_INIT 1 //init pcf8574
 
-#define LCD_PCF8574_DEVICEID 0 //device id, addr = pcf8574 base addr + LCD_PCF8574_DEVICEID
+#define LCD_PCF8574_DEVICEID 7 //device id, addr = pcf8574 base addr + LCD_PCF8574_DEVICEID
 
+#define LCD_LED 0 
 
 /** 
  *  @name  Definitions for Display Size 
  *  Change these definitions to adapt setting to your display
  */
-#define LCD_LINES           2     /**< number of visible lines of the display */
-#define LCD_DISP_LENGTH    16     /**< visibles characters per line of the display */
+#define LCD_LINES           4     /**< number of visible lines of the display */
+#define LCD_DISP_LENGTH    20     /**< visibles characters per line of the display */
 #define LCD_LINE_LENGTH  0x40     /**< internal line length of the display    */
 #define LCD_START_LINE1  0x00     /**< DDRAM address of first char of line 1 */
 #define LCD_START_LINE2  0x40     /**< DDRAM address of first char of line 2 */
 #define LCD_START_LINE3  0x14     /**< DDRAM address of first char of line 3 */
 #define LCD_START_LINE4  0x54     /**< DDRAM address of first char of line 4 */
-#define LCD_WRAP_LINES      1     /**< 0: no wrap, 1: wrap at end of visibile line */
+#define LCD_WRAP_LINES      0     /**< 0: no wrap, 1: wrap at end of visibile line */
+/*
+P0 - 4 RS
+p1 - 5 RW
+p2 - 6 EN
+p3 - LED
+p4 - 11 D4
+p5 - 12 D5
+p6 - 13 D6
+p7 - 14 D7
+*/
 
 
+//#define LCD_DATA0_PIN    0            /**< pin for 4bit data bit 0  */
+//#define LCD_DATA1_PIN    1            /**< pin for 4bit data bit 1  */
+//#define LCD_DATA2_PIN    2            /**< pin for 4bit data bit 2  */
+//#define LCD_DATA3_PIN    3            /**< pin for 4bit data bit 3  */
+//#define LCD_RS_PIN       6            /**< pin  for RS line         */
+//#define LCD_RW_PIN       5            /**< pin  for RW line         */
+//#define LCD_E_PIN        4            /**< pin  for Enable line     */
+//#define LCD_LED_PIN      7            /**< pin  for Led             */
 
-#define LCD_DATA0_PIN    0            /**< pin for 4bit data bit 0  */
-#define LCD_DATA1_PIN    1            /**< pin for 4bit data bit 1  */
-#define LCD_DATA2_PIN    2            /**< pin for 4bit data bit 2  */
-#define LCD_DATA3_PIN    3            /**< pin for 4bit data bit 3  */
-#define LCD_RS_PIN       6            /**< pin  for RS line         */
-#define LCD_RW_PIN       5            /**< pin  for RW line         */
-#define LCD_E_PIN        4            /**< pin  for Enable line     */
-#define LCD_LED_PIN      7            /**< pin  for Led             */
+
+#define LCD_DATA0_PIN    4
+#define LCD_DATA1_PIN    5
+#define LCD_DATA2_PIN    6
+#define LCD_DATA3_PIN    7 
+#define LCD_RS_PIN       0
+#define LCD_RW_PIN       1
+#define LCD_E_PIN        2
+#define LCD_LED_PIN      3
+
 
 
 /**

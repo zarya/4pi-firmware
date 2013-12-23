@@ -67,6 +67,10 @@ void SysTick_Handler(void)
 	
     if(timestamp%10==0)
         adc_sample();
+
+    if(timestamp%1000==0) {
+        hdlcd_main();
+    }
     
     
     //temp control goes in here

@@ -47,7 +47,6 @@ void pcf8574_init() {
     int i = 0;
     for(i=0; i<PCF8574_MAXDEVICES; i++)
         pcf8574_pinstatus[i] = 0;
-
 }
 
 /*
@@ -164,6 +163,7 @@ int8_t pcf8574_getinput(uint8_t deviceid) {
         //data = ~i2c_readNak();
         //i2c_stop();
         //Hier moet nog een read functie in.
+        TWID_Read(&twid, (PCF8574_ADDRBASE+deviceid), 0, 0, data, 1, 0);
     }
     return data;
 }
