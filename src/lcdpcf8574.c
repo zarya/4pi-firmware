@@ -264,13 +264,13 @@ void lcd_gotoxy(uint8_t x, uint8_t y)
 #endif
 #if LCD_LINES==4
     if ( y==0 )
-        lcd_command((1<<LCD_DDRAM)+LCD_START_LINE1+x);
+        lcd_command((1<<LCD_DDRAM) ^ LCD_START_LINE1 ^ x);
     else if ( y==1)
-        lcd_command((1<<LCD_DDRAM)+LCD_START_LINE2+x);
+        lcd_command((1<<LCD_DDRAM) ^ LCD_START_LINE2 ^ x);
     else if ( y==2)
-        lcd_command((1<<LCD_DDRAM)+LCD_START_LINE3+x);
+        lcd_command((1<<LCD_DDRAM) ^ LCD_START_LINE3 ^ x);
     else /* y==3 */
-        lcd_command((1<<LCD_DDRAM)+LCD_START_LINE4+x);
+        lcd_command((1<<LCD_DDRAM) ^ LCD_START_LINE4 ^ x);
 #endif
 
 }/* lcd_gotoxy */
@@ -398,6 +398,24 @@ void lcd_puts_p(const char *progmem_s)
 
 }*//* lcd_puts_p */
 
+/*************************************************************************
+Allows us to fill the first 8 CGRAM locations
+with custom characters
+Input:      Location, charmap
+Returns:    none
+*************************************************************************/
+/*
+//void lcd_createChar(uint8_t location, uint8_t charmap[]) {
+void lcd_createChar(uint8_t location, const char *charmap) {
+  location &= 0x7; // we only have 8 locations 0-7
+  lcd_command(LCD_CGRAM | (location << 3));
+
+  volatile unsigned int i;
+
+  for (i=0; i<8; i++) {
+    lcd_write(charmap[i],1);
+  }
+}*/
 
 /*************************************************************************
 Initialize display and select type of cursor 
