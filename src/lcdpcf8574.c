@@ -17,7 +17,7 @@ Please refer to LICENSE file for licensing information.
 
 #include "lcdpcf8574.h"
 
-#define lcd_e_delay()   _delayFourCycles( 500 ) 
+#define lcd_e_delay()   _delayFourCycles( 350 ) 
 #define lcd_e_toggle()  toggle_e()
 #define _BV(bit) (1 << (bit)) 
 
@@ -251,10 +251,10 @@ Input:    x  horizontal position  (0: left most position)
           y  vertical position    (0: first line)
 Returns:  none
 *************************************************************************/
-void lcd_gotoxy(uint8_t x, uint8_t y)
+void lcd_gotoxy(int x, uint8_t y)
 {
 #if LCD_LINES==1
-    lcd_command((1<<LCD_DDRAM)+LCD_START_LINE1+x);
+    lcd_command((1<<LCD_DDRAM) ^ (LCD_START_LINE1 + x));
 #endif
 #if LCD_LINES==2
     if ( y==0 ) 
@@ -264,15 +264,14 @@ void lcd_gotoxy(uint8_t x, uint8_t y)
 #endif
 #if LCD_LINES==4
     if ( y==0 )
-        lcd_command((1<<LCD_DDRAM) ^ LCD_START_LINE1 ^ x);
+        lcd_command((1<<LCD_DDRAM) ^ (LCD_START_LINE1 + x));
     else if ( y==1)
-        lcd_command((1<<LCD_DDRAM) ^ LCD_START_LINE2 ^ x);
+        lcd_command((1<<LCD_DDRAM) ^ (LCD_START_LINE2 + x));
     else if ( y==2)
-        lcd_command((1<<LCD_DDRAM) ^ LCD_START_LINE3 ^ x);
+        lcd_command((1<<LCD_DDRAM) ^ (LCD_START_LINE3 + x));
     else /* y==3 */
-        lcd_command((1<<LCD_DDRAM) ^ LCD_START_LINE4 ^ x);
+        lcd_command((1<<LCD_DDRAM) ^ (LCD_START_LINE4 + x));
 #endif
-
 }/* lcd_gotoxy */
 
 
@@ -332,7 +331,6 @@ void lcd_putc(char c)
     }
     else
     {
-/*
 #if LCD_WRAP_LINES==1
 #if LCD_LINES==1
         if ( pos == LCD_START_LINE1+LCD_DISP_LENGTH ) {
@@ -355,9 +353,8 @@ void lcd_putc(char c)
             lcd_write((1<<LCD_DDRAM)+LCD_START_LINE1,0);
         }
 #endif
-        lcd_waitbusy();
+        //lcd_waitbusy();
 #endif
-        */
         lcd_write(c, 1);
     }
 
